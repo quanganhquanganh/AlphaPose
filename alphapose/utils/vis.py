@@ -417,7 +417,7 @@ def vis_frame(frame, im_res, opt, vis_thres, format='coco'):
             kp_scores = torch.cat((kp_scores, torch.unsqueeze((kp_scores[5, :] + kp_scores[6, :]) / 2, 0)))
             vis_thres.append(vis_thres[-1])
         if opt.tracking:
-            color = get_color_fast(int(abs(human['idx'])))
+            color = get_color_fast(int(np.abs(human['idx'])))
         else:
             color = BLUE
 
