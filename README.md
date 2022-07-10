@@ -9,11 +9,11 @@ https://colab.research.google.com/drive/1o9RhThxyxHr4P3n6a19UGmc5LTRn5zfp?usp=sh
 
 ## News!
 - Jan 2022: [**v0.5.0** version](https://github.com/MVIG-SJTU/AlphaPose) of AlphaPose is released! Stronger whole body(face,hand,foot) keypoints! More models are availabel. Checkout [docs/MODEL_ZOO.md](docs/MODEL_ZOO.md)
-- Aug 2020: [**v0.4.0** version](https://github.com/MVIG-SJTU/AlphaPose) of AlphaPose is released! Stronger tracking! Include whole body(face,hand,foot) keypoints! [Colab](https://colab.research.google.com/drive/14Zgotr2_F0LfvcpRi03uQdMvUbLQSgok?usp=sharing) now available.
+- Aug 2020: [**v0.4.0** version](https://github.com/MVIG-SJTU/AlphaPose) of AlphaPose is released! Stronger tracking! Include whole body(face,hand,foot) keypoints! [Colab](https://colab.research.google.com/drive/1c7xb_7U61HmeJp55xjXs24hf1GUtHmPs?usp=sharing) now available.
 - Dec 2019: [**v0.3.0** version](https://github.com/MVIG-SJTU/AlphaPose) of AlphaPose is released! Smaller model, higher accuracy!
 - Apr 2019: [**MXNet** version](https://github.com/MVIG-SJTU/AlphaPose/tree/mxnet) of AlphaPose is released! It runs at **23 fps** on COCO validation set.
 - Feb 2019: [CrowdPose](https://github.com/MVIG-SJTU/AlphaPose/docs/CrowdPose.md) is integrated into AlphaPose Now!
-- Dec 2018: [General version](https://github.com/MVIG-SJTU/AlphaPose/PoseFlow) of PoseFlow is released! 3X Faster and support pose tracking results visualization!
+- Dec 2018: [General version](https://github.com/MVIG-SJTU/AlphaPose/trackers/PoseFlow) of PoseFlow is released! 3X Faster and support pose tracking results visualization!
 - Sep 2018: [**v0.2.0** version](https://github.com/MVIG-SJTU/AlphaPose/tree/pytorch) of AlphaPose is released! It runs at **20 fps** on COCO validation set (4.6 people per image on average) and achieves 71 mAP!
 
 ## AlphaPose
@@ -86,13 +86,13 @@ Please check out [docs/INSTALL.md](docs/INSTALL.md)
 Please check out [docs/MODEL_ZOO.md](docs/MODEL_ZOO.md)
 
 ## Quick Start
-- **Colab**: We provide a [colab example](https://colab.research.google.com/drive/14Zgotr2_F0LfvcpRi03uQdMvUbLQSgok?usp=sharing) for your quick start.
+- **Colab**: We provide a [colab example](https://colab.research.google.com/drive/1c7xb_7U61HmeJp55xjXs24hf1GUtHmPs?usp=sharing) for your quick start.
 
 - **Inference**: Inference demo
 ``` bash
 ./scripts/inference.sh ${CONFIG} ${CHECKPOINT} ${VIDEO_NAME} # ${OUTPUT_DIR}, optional
 ```
-For high level API, please refer to `./scripts/demo_api.py`
+For high level API, please refer to `./scripts/demo_api.py`. To enable tracking, please refer to [this page](./trackers).
 
 - **Training**: Train from scratch
 ``` bash
@@ -111,6 +111,8 @@ Demo using `FastPose` model.
 ./scripts/inference.sh configs/coco/resnet/256x192_res50_lr1e-3_1x.yaml pretrained_models/fast_res50_256x192.pth ${VIDEO_NAME}
 #or
 python scripts/demo_inference.py --cfg configs/coco/resnet/256x192_res50_lr1e-3_1x.yaml --checkpoint pretrained_models/fast_res50_256x192.pth --indir examples/demo/
+#or if you want to use yolox-x as the detector
+python scripts/demo_inference.py --detector yolox-x --cfg configs/coco/resnet/256x192_res50_lr1e-3_1x.yaml --checkpoint pretrained_models/fast_res50_256x192.pth --indir examples/demo/
 ```
 
 Train `FastPose` on mscoco dataset.
@@ -134,13 +136,13 @@ The main contributors are listed in [doc/contributors.md](docs/contributors.md).
 - [ ] 3D pose
 - [x] add tracking flag
 - [ ] PyTorch C++ version
-- [ ] Add MPII and AIC data
+- [x] Add model trained on mixture dataset (Check the model zoo)
 - [ ] dense support
 - [x] small box easy filter
 - [x] Crowdpose support
 - [ ] Speed up PoseFlow
-- [ ] Add stronger/light detectors and the [mobile pose](https://github.com/YuliangXiu/MobilePose-pytorch)
-- [x] High level API
+- [x] Add stronger/light detectors (yolox is now supported)
+- [x] High level API (check the scripts/demo_api.py)
 
 We would really appreciate if you can offer any help and be the [contributor](docs/contributors.md) of AlphaPose.
 
