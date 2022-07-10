@@ -188,6 +188,8 @@ def vis_frame_fast(frame, im_res, opt, vis_thres, format='coco'):
         raise NotImplementedError
     # im_name = os.path.basename(im_res['imgname'])
     img = frame.copy()
+    # Blacken the image
+    img[:, :, 0] = 0
     height, width = img.shape[:2]
     for human in im_res['result']:
         part_line = {}
@@ -495,7 +497,6 @@ def vis_frame(frame, im_res, opt, vis_thres, format='coco'):
                 #transparency = float(max(0, min(1, 0.5 * (kp_scores[start_p] + kp_scores[end_p])-0.1)))
                 img = cv2.addWeighted(bg, transparency, img, 1 - transparency, 0)
     return img
-
 
 def getTime(time1=0):
     if not time1:
