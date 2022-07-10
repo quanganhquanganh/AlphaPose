@@ -189,7 +189,8 @@ def vis_frame_fast(frame, im_res, opt, vis_thres, format='coco'):
     # im_name = os.path.basename(im_res['imgname'])
     img = frame.copy()
     # Blacken the image
-    img[:, :, 0] = 0
+    print('fast', img.shape)
+    # img[:, :, 0] = 0
     height, width = img.shape[:2]
     for human in im_res['result']:
         part_line = {}
