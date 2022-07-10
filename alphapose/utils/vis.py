@@ -188,9 +188,10 @@ def vis_frame_fast(frame, im_res, opt, vis_thres, format='coco'):
         raise NotImplementedError
     # im_name = os.path.basename(im_res['imgname'])
     img = frame.copy()
-    # Blacken the image
-    print('fast', img.shape)
-    # img[:, :, 0] = 0
+    # Blacken the image, image's shape is (h, w, 3), and in BGR
+    img[:, :, 0] = 0
+    img[:, :, 1] = 0
+    img[:, :, 2] = 0
     height, width = img.shape[:2]
     for human in im_res['result']:
         part_line = {}
